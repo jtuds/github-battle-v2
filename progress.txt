@@ -1,2 +1,2 @@
 https://online.reacttraining.com/courses/50507/lectures/760301
-Video: Managing and Updating Component State 19:10 - Binding the updatestate function so it passes the language to the method.
+Dynamic rendering and query params: 9:44
