@@ -2,6 +2,7 @@ let React = require('react');
 let Home = require('./Home');
 let Popular = require('./Popular');
 let Battle = require('./Battle');
+let Results = require('./Results');
 let ReactRouter = require('react-router-dom');
 let Nav = require('./Nav');
 let hashHistory = require('react-router-dom').hashHistory;
@@ -20,7 +21,8 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route path='/popular' component={Popular} />
             <Route exact path='/battle' component={Battle} />
-            <Route 
+            <Route exact path='/battle/results' component={Results} />
+            <Route
               render={function() {
                 return <p>Not found</p>;
               }} 
