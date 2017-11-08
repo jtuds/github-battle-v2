@@ -1,14 +1,14 @@
 const axios = require('axios');
 
 function getProfile(username) {
-  return axios.get('https://api.github.com/users/' + username + params)
+  return axios.get('https://api.github.com/users/' + username)
   .then(function (user) {
     return user.data;
   });
 }
 
 function getRepos(username) {
-  return axios.get('https://api.github.com/users/' + username + '/repos' + params + '&per_page=100')
+  return axios.get('https://api.github.com/users/' + username + '/repos?per_page=100')
 }
 
 function getStarCount(repos) {
@@ -54,7 +54,7 @@ module.exports = {
   battle: function (players) {
     return axios.all(players.map(getUserData))
     .then(sortPlayers)
-    .catch(hanldeError)
+    .catch(handleError)
   },
   fetchPopularRepos: function (language) {
     let encodedURI = window.encodeURI('https://api.github.com/search/repositories?q=stars:>1+language:' + language + '&sort=stars&order=desc&type=Repositories');
