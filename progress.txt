@@ -1,2 +1,2 @@
 https://online.reacttraining.com/courses/50507/lectures/760301
-Composition via props.children - 9.09
+Defaulting props with defaultProps

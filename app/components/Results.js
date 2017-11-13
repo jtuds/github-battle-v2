@@ -1,6 +1,42 @@
 let React = require('react');
 let queryString = require('query-string');
 var api = require('../utils/api');
+var PropTypes = require('prop-types');
+var PlayerPreview = require('./PlayerPreview');
+
+function Profile (props) {
+	var info = props.info;
+	
+	return (
+		<PlayerPreview avatar={info.avatar_url} username={info.login}>
+			<ul className='space-list-items'>
+				{info.name && <li>{info.name}</li>}
+				{info.location && <li>{info.location}</li>}
+				{info.company && <li>{info.company}</li>}
+				<li>Followers: {info.followers}</li>
+				<li>Following: {info.following}</li>
+				<li>Public Repos: {info.public_repos}</li>
+				{info.blog && <li><a href={info.blog}>{info.blog}</a></li>}
+			</ul>
+		</PlayerPreview>
+	)
+}
+
+function Player(props) {
+	return (
+		<div>
+			<h1 className='header'>{props.label}</h1>
+			<h3 style={{textAlign: 'center'}}>Score: {props.score}</h3>
+			<Profile info={props.profile}/>
+		</div>
+	)
+}
+
+Player.PropTypes = {
+	label: PropTypes.string.isRequired,
+	score: PropTypes.number.isRequired,
+	profile: PropTypes.object.isRequired,
+}
 
 class Results extends React.Component {
 	constructor(props) {
@@ -54,7 +90,18 @@ class Results extends React.Component {
 		}
 
 		return (
-			<div>{JSON.stringify(this.state, null, 2)}</div>
+			<div className="row">
+				<Player 
+					label='Winner'
+					score={winner.score}
+					profile={winner.profile}
+				/>
+				<Player
+					label='Loser'
+					score={loser.score}
+					profile={loser.profile}
+				/>
+			</div>
 		)
 	}
 }
